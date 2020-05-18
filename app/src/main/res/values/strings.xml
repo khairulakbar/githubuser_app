@@ -1,0 +1,32 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">GithubUser2</string>
+    <string name="search">Search</string>
+    <string name="hint_username">Input username</string>
+    <string name="sampleuser">sidiqpermana</string>
+    <string name="search_hint">Search Github Username</string>
+    <string name="nama">Name</string>
+    <string name="username">Username</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Followers</string>
+    <string name="num_string">0</string>
+    <string name="following">Following</string>
+    <string name="no_data">No Data</string>
+    <string name="github_url">github url</string>
+    <string name="not_found">Data Not Found!</string>
+    <string name="failed">Load Failed!</string>
+    <string name="filling">Please Fill Username!</string>
+    <string name="no_followers">User don\'t Have Followers!</string>
+    <string name="no_following">User don\'t Have Following!</string>
+
+    <string name="change_language_settings">Change Language</string>
+    <string name="favorite_list">Favorite List</string>
+    <string name="add_fav">Added To Favorite</string>
+    <string name="fav_failed">User Already Favorited!</string>
+    <string name="notifikasi_off">NOTIFIKASI OFF</string>
+    <string name="notifikasi_on">NOTIFIKASI ON</string>
+    <string name="notif_set">Notification Set</string>
+    <string name="notif_off">Notification Off</string>
+    <string name="notification_setting">Notification Setting</string>
+</resources>

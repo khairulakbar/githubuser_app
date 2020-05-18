@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">GithubUser2</string>
+    <string name="search">Cari</string>
+    <string name="hint_username">Masukkan Nama User</string>
+    <string name="sampleuser">sidiqpermana</string>
+    <string name="search_hint">Cari Nama User Github</string>
+    <string name="nama">Nama</string>
+    <string name="username">Nama User</string>
+    <string name="company">Perusahaan</string>
+    <string name="location">Lokasi</string>
+    <string name="repository">Repositori</string>
+    <string name="followers">Pengikut</string>
+    <string name="num_string">0</string>
+    <string name="following">Mengikuti</string>
+    <string name="no_data">Tidak ada Data</string>
+    <string name="github_url">github url</string>
+    <string name="not_found">Data Tidak Ditemukan!</string>
+    <string name="failed">Gagal Dimuat!</string>
+    <string name="filling">Harap Masukkan Nama User!</string>
+    <string name="no_followers">User Tidak Memiliki Pengikut!</string>
+    <string name="no_following">User Tidak Mengikuti Siapapun!</string>
+
+    <string name="change_language_settings">Ganti Bahasa</string>
+    <string name="favorite_list">Daftar Favorit</string>
+    <string name="add_fav">Ditambahkan ke Favorite</string>
+    <string name="fav_failed">User Sudah Difavoritkan!</string>
+    <string name="notifikasi_off">MATIKAN NOTIFIKASI</string>
+    <string name="notifikasi_on">HIDUPKAN NOTIFIKASI</string>
+    <string name="notif_set">Notifikasi Dihidupkan</string>
+    <string name="notif_off">Notifikasi Dimatikan</string>
+    <string name="notification_setting">Pengaturan Notifikasi</string>
+</resources>
