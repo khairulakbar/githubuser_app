@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">GithubUser2</string>
+    <string name="app_name">GithubUserCP</string>
     <string name="search">Cari</string>
     <string name="hint_username">Masukkan Nama User</string>
     <string name="sampleuser">sidiqpermana</string>
@@ -30,4 +30,6 @@
     <string name="notif_set">Notifikasi Dihidupkan</string>
     <string name="notif_off">Notifikasi Dimatikan</string>
     <string name="notification_setting">Pengaturan Notifikasi</string>
+    <string name="tx_delete">Hapus</string>
+    <string name="alarm_txt">Ayo temukan user favorit di Github</string>
 </resources>

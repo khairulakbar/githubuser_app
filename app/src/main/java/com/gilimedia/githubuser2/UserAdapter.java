@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,8 +49,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Username :" + users.get(position).getLogin(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, DetailActivity.class);
+                intent.putExtra("USER_ID", String.valueOf(users.get(position).getId()));
                 intent.putExtra("USER_NAME", users.get(position).getLogin());
                 intent.putExtra("AVATAR", users.get(position).getAvatarUrl());
                 intent.putExtra("URL", users.get(position).getHtmlUrl());

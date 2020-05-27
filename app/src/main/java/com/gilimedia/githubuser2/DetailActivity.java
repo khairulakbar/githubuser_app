@@ -2,6 +2,7 @@ package com.gilimedia.githubuser2;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -39,7 +40,8 @@ public class DetailActivity extends AppCompatActivity {
     private CircleImageView ImgAvatar;
     private AppDatabase mDb;
     private ProgressDialog loading;
-    private String username,avatar,githubUrl;
+    private String id,username,avatar,githubUrl;
+    private int usid;
 
 
     @Override
@@ -66,40 +68,43 @@ public class DetailActivity extends AppCompatActivity {
         loading = ProgressDialog.show(DetailActivity.this, null, "Loading...", true, false);
         loading.show();
 
-
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         Intent intent = getIntent();
+        id = intent.getStringExtra("USER_ID");
         username = intent.getStringExtra("USER_NAME");
         avatar = intent.getStringExtra("AVATAR");
         githubUrl = intent.getStringExtra("URL");
 
+        usid = Integer.parseInt(id);
+
+        Toast.makeText(DetailActivity.this, username, Toast.LENGTH_SHORT).show();
 
         //tampilkan detail user
         if(username != null){
             showDetail(username);
         }
 
-
         String follower = getResources().getString(R.string.followers);
         String following = getResources().getString(R.string.following);
+
         //setup viewpager followers dan following
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.AddFragment(new FragmentFollowers(), follower);
         adapter.AddFragment(new FragmentFollowing(), following);
 
-        viewPager.setTag(username); //masukkan username ke dalam viewpager
+        viewPager.setTag(username);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
 
         favorit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final Usergithub usergithub = new Usergithub(
+                        usid,
                         username,
                         githubUrl,
                         avatar);
@@ -107,12 +112,17 @@ public class DetailActivity extends AppCompatActivity {
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override
                     public void run() {
-                        Usergithub usergithub1 = mDb.userDao().loadPersonById(username);
-                        if(usergithub1 == null){
-                            mDb.userDao().insertPerson(usergithub);
+                        Cursor usergit = mDb.userDao().selectById(usid);
+                        if(usergit != null && usergit.getCount() > 0){
+                            Intent myIntent = new Intent(getApplicationContext(), FavoriteActivity.class);
+                            myIntent.putExtra("ALERT",getString(R.string.fav_failed));
+                            startActivityForResult(myIntent, 0);
+                        }else{
+                            mDb.userDao().insert(usergithub);
                             finish();
+                            Intent myIntent = new Intent(getApplicationContext(), FavoriteActivity.class);
+                            startActivityForResult(myIntent, 0);
                         }
-
 
                     }
                 });
@@ -156,7 +166,6 @@ public class DetailActivity extends AppCompatActivity {
 
                     loading.dismiss();
 
-
                 } else {
                     Toast.makeText(DetailActivity.this, getResources().getString(R.string.not_found), Toast.LENGTH_SHORT).show();
                     loading.dismiss();
@@ -168,7 +177,6 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this, getResources().getString(R.string.failed), Toast.LENGTH_SHORT).show();
                 loading.dismiss();
             }
-
 
         });
     }
@@ -190,6 +198,9 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(mIntent);
         }if(item.getItemId() == R.id.action_favorite){
             Intent mIntent = new Intent(DetailActivity.this,FavoriteActivity.class);
+            startActivity(mIntent);
+        }if(item.getItemId() == R.id.action_notif_setting){
+            Intent mIntent = new Intent(DetailActivity.this,NotifSetting.class);
             startActivity(mIntent);
         }
         return super.onOptionsItemSelected(item);

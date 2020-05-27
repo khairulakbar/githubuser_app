@@ -1,5 +1,6 @@
 package com.gilimedia.githubuser2.notification;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -41,10 +42,10 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     private void showAlarmNotification(Context context, String title, String message, int notifId) {
         String CHANNEL_ID = "Notif_channel";
-        String CHANNEL_NAME = "AlarmManager channel";
+        String CHANNEL_NAME = "MyNotif channel";
 
         Intent myIntent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,myIntent,Intent.FLAG_ACTIVITY_NEW_TASK);
+        @SuppressLint("WrongConstant") PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,myIntent,Intent.FLAG_ACTIVITY_NEW_TASK);
 
         NotificationManager notificationManagerCompat = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -91,7 +92,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, NotificationReceiver.class);
-        intent.putExtra(EXTRA_MESSAGE, "Lets Find Popular User on Github");
+        intent.putExtra(EXTRA_MESSAGE, context.getString(R.string.alarm_txt));
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 9);

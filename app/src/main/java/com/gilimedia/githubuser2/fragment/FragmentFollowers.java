@@ -70,6 +70,7 @@ public class FragmentFollowers extends Fragment {
     }
 
     private void tampilFollowers(String username) {
+
         ApiServices api = InitRetrofit.getInstance();
         // Siapkan request
         Call<List<ResponseFollowers>> userCall = api.req_followers(username);

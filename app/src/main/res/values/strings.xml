@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">GithubUser2</string>
+    <string name="app_name">GithubUserCP</string>
     <string name="search">Search</string>
     <string name="hint_username">Input username</string>
     <string name="sampleuser">sidiqpermana</string>
@@ -29,4 +29,7 @@
     <string name="notif_set">Notification Set</string>
     <string name="notif_off">Notification Off</string>
     <string name="notification_setting">Notification Setting</string>
+    <string name="tx_delete">Delete</string>
+    <string name="alarm_txt">Lets Find Popular User on Github</string>
+    <string name="swipe">Swipe</string>
 </resources>

@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         search.setOnQueryTextListener(this);
 
 
-
     }
 
 

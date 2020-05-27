@@ -2,6 +2,7 @@ package com.gilimedia.githubuser2;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +15,11 @@ import com.gilimedia.githubuser2.room.AppDatabase;
 import com.gilimedia.githubuser2.room.Usergithub;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyViewHolder> {
     private Context context;
-    private List<Usergithub> mUsergithubList;
+    private Cursor mCursor;
 
     public FavoriteAdapter(Context context) {
         this.context = context;
@@ -29,35 +28,39 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_user, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_fav, viewGroup, false);
         return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoriteAdapter.MyViewHolder myViewHolder, int i) {
-        myViewHolder.username.setText(mUsergithubList.get(i).getUsername());
-        myViewHolder.url.setText(mUsergithubList.get(i).getUrl());
-        Picasso.with(context).load(mUsergithubList.get(i).getAvatar()).into(myViewHolder.avatar);
+    public void onBindViewHolder(@NonNull FavoriteAdapter.MyViewHolder myViewHolder, final int i) {
+
+        if (mCursor.moveToPosition(i)) {
+            myViewHolder.username.setText(mCursor.getString(mCursor.getColumnIndexOrThrow(Usergithub.COLUMN_NAME)));
+            myViewHolder.url.setText(mCursor.getString(mCursor.getColumnIndexOrThrow(Usergithub.COLUMN_URL)));
+            Picasso.with(context).load(mCursor.getString(mCursor.getColumnIndexOrThrow(Usergithub.AVATAR))).into(myViewHolder.avatar);
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        if (mUsergithubList == null) {
+        if (mCursor == null) {
             return 0;
         }
-        return mUsergithubList.size();
-
+        return mCursor.getCount();
     }
 
-    public void setTasks(List<Usergithub> usergithubList) {
-        mUsergithubList = usergithubList;
+    public void setTask(Cursor cursor) {
+        mCursor = cursor;
         notifyDataSetChanged();
     }
 
-    public List<Usergithub> getTasks() {
+    public Cursor getTasks() {
 
-        return mUsergithubList;
+        return mCursor;
     }
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView username, url;

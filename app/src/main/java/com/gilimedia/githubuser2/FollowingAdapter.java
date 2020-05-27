@@ -30,13 +30,9 @@ public class FollowingAdapter extends RecyclerView.Adapter<FollowingAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Layout inflater
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
 
-        // Hubungkan dengan MyViewHolder
-        //MyViewHolder holder = new MyViewHolder(view);
-        //return holder;
-        //dijadikan satu statement seperti di bawah
         return new MyViewHolder(view);
     }
 

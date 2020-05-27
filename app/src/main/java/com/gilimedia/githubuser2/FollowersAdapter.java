@@ -30,12 +30,9 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Layout inflater
+
         View view = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
 
-        // Hubungkan dengan MyViewHolder
-        //MyViewHolder holder = new MyViewHolder(view);
-        //return holder;
         return new  MyViewHolder(view);
     }
 

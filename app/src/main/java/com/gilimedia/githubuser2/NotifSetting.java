@@ -27,7 +27,6 @@ public class NotifSetting extends AppCompatActivity implements View.OnClickListe
         btn_cancel.setOnClickListener(this);
         btn_set.setOnClickListener(this);
 
-
         notificationReceiver = new NotificationReceiver();
 
         if(getSupportActionBar() != null){

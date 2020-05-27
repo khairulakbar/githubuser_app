@@ -1,29 +1,39 @@
 package com.gilimedia.githubuser2.room;
 
 
+import android.database.Cursor;
+import android.provider.BaseColumns;
+
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import java.util.List;
 
 @Dao
 public interface UserDao {
 
-    @Query("SELECT * FROM userlist ORDER BY id")
-    List<Usergithub> loadAllUsers();
+
+    @Query("SELECT COUNT(*) FROM " + Usergithub.TABLE_NAME)
+    int count();
 
     @Insert
-    void insertPerson(Usergithub usergithub);
+    long insert(Usergithub usergithub);
+
+
+    @Query("SELECT * FROM " + Usergithub.TABLE_NAME + " ORDER BY " + BaseColumns._ID)
+    Cursor selectAll();
+
+
+    @Query("SELECT * FROM " + Usergithub.TABLE_NAME + " WHERE " + Usergithub.COLUMN_ID + " = :id")
+    Cursor selectById(long id);
+
+
+    @Query("DELETE FROM " + Usergithub.TABLE_NAME + " WHERE " + Usergithub.COLUMN_ID + " = :id")
+    int deleteById(long id);
+
 
     @Update
-    void updatePerson(Usergithub usergithub);
+    int update(Usergithub usergithub);
 
-    @Delete
-    void delete(Usergithub usergithub);
-
-    @Query("SELECT * FROM userlist WHERE username = :username")
-    Usergithub loadPersonById(String username);
 }

@@ -15,7 +15,6 @@ import retrofit2.http.Query;
 
 public interface ApiServices {
 
-    //@Headers("Authorization : token <d7ee02a878e4b23fd3e8f907c91cfa76f9059bef>")
     @GET("search/users")
     Call<ResponseUser> req_show_user(@Query("q") String username);
 
